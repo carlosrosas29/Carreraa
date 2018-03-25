@@ -6,25 +6,55 @@ using System.Threading.Tasks;
 
 namespace Carrera
 {
-    class Liebre:Corredor
+    class Liebre : Corredor
     {
         public string Salto()
         {
             Corredor m = new Corredor();
-            int posicion=0;
-            int i=0;
-            string muestra="";
-            while(i<=80)
+            int avanzar = 0;
+            //int i = 0;
+            int posicion = 0;
+            string muestra = "";
+            while (posicion <= 80)
             {
                 int r = m.Avanzar();
-                if(r>=1 && r<=2) { posicion = posicion + 0; }
-                else { if (r >= 3 && r <= 4) { posicion = posicion + 9; } }
-                if (r == 5) { posicion = posicion - 12; }
-                else { if (r >= 6 && r <= 8) { posicion = posicion + 1; } }
-                if (r >= 9 && r <= 10) { posicion = posicion - 2; }
-                i++;
-                muestra = "La liebre se encuentra en la posicion: " + i + "m"+Environment.NewLine;
-
+                if (r >= 1 && r <= 2)
+                {
+                    avanzar = avanzar + 0;
+                }
+                else
+                {
+                    if (r >= 3 && r <= 4)
+                    {
+                        avanzar = avanzar + 9;
+                    }
+                }
+                if (r == 5)
+                {
+                    if (avanzar <= 12)
+                    {
+                        avanzar = 0;
+                    }
+                    else
+                    {
+                        avanzar = avanzar - 12;
+                    }
+                    if (r >= 6 && r <= 8) { avanzar = avanzar + 1;}
+                }
+                if (r >= 9 && r <= 10)
+                {
+                    if (avanzar <= 2)
+                    {
+                        avanzar = 0;
+                    }
+                    else
+                    {
+                        avanzar = avanzar - 2;
+                    }
+                }
+                posicion = posicion + avanzar;
+                muestra += "La liebre se encuentra en la posicion: " + posicion + "m" + Environment.NewLine;
+                //posicion++;
             }
             return muestra;
         }
